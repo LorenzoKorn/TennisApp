@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="lorenzokorn.tennis_app.fragments.SplashScreen"
+        android:label="splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/splashScreen_to_users"
+            app:destination="@id/users" />
+    </fragment>
+    <fragment
+        android:id="@+id/users"
+        android:name="lorenzokorn.tennis_app.fragments.Users"
+        android:label="users"
+        tools:layout="@layout/fragment_users" />
+</navigation>

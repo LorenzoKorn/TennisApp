@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tennis-app</string>
+
+    <!-- SPLASH SCREEN -->
+    <string name="abc">Splash screen</string>
+
+    <!-- USERS SCREEN -->
+    <string name="def">Users</string>
+</resources>
