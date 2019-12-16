@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">Tennis-app</string>
 
+    <!-- GENERAL -->
+
     <!-- SPLASH SCREEN -->
-    <string name="abc">Splash screen</string>
+    <string name="splash">Splash screen</string>
 
     <!-- USERS SCREEN -->
-    <string name="def">Users</string>
+    <string name="users">Users</string>
+    <string name="full_name">%s %s %s</string>
+
+    <!-- CREATE PLAYER SCREEN -->
+    <string name="add_player_first_name">First name</string>
+    <string name="add_player_prefix">Prefix</string>
+    <string name="add_player_last_name">Last name</string>
+    <string name="add_player_single_rating">Single:</string>
+    <string name="add_player_double_rating">Double:</string>
+    <string name="add_player_id">id:</string>
+    <string name="add_player_add">Add</string>
 </resources>

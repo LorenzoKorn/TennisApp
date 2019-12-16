@@ -16,7 +16,16 @@
     </fragment>
     <fragment
         android:id="@+id/users"
-        android:name="lorenzokorn.tennis_app.fragments.Users"
+        android:name="lorenzokorn.tennis_app.fragments.Players"
         android:label="users"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/users_to_createUser"
+            app:destination="@id/create_player" />
+    </fragment>
+    <fragment
+        android:id="@+id/create_player"
+        android:name="lorenzokorn.tennis_app.fragments.CreatePlayer"
+        android:label="create player"
+        tools:layout="@layout/fragment_create_player" />
 </navigation>
