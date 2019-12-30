@@ -28,7 +28,7 @@ class Players : Fragment() {
 
     private lateinit var viewModel: PlayerViewModel
     private var players = arrayListOf<Player>()
-    private var playerAdapter = PlayerAdapter(players)
+    private var playerAdapter = PlayerAdapter(players) { player -> openPlayerHome(player) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,5 +71,9 @@ class Players : Fragment() {
         players_fab.setOnClickListener {
             findNavController().navigate(R.id.users_to_createUser)
         }
+    }
+
+    private fun openPlayerHome(player: Player) {
+        findNavController().navigate(R.id.users_to_userHome)
     }
 }

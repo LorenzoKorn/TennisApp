@@ -22,10 +22,22 @@
         <action
             android:id="@+id/users_to_createUser"
             app:destination="@id/create_player" />
+        <action
+            android:id="@+id/users_to_userHome"
+            app:destination="@id/userHome" />
     </fragment>
     <fragment
         android:id="@+id/create_player"
         android:name="lorenzokorn.tennis_app.fragments.CreatePlayer"
         android:label="create player"
         tools:layout="@layout/fragment_create_player" />
+    <fragment
+        android:id="@+id/userHome"
+        android:name="lorenzokorn.tennis_app.fragments.UserHome"
+        android:label="user home"
+        tools:layout="@layout/fragment_user_home" >
+        <argument
+            android:name="player"
+            app:argType="lorenzokorn.tennis_app.models.Player" />
+    </fragment>
 </navigation>

@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.player_list_item.view.*
 import lorenzokorn.tennis_app.R
 
-class PlayerAdapter(var players: List<Player>) : RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
+class PlayerAdapter(var players: List<Player>, private val onClick: (Player) -> Unit) :
+    RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(player: Player) {
+            itemView.setOnClickListener { onClick(player) }
             itemView.player_name.text = context.getString(
                 R.string.full_name,
                 player.firstName,
