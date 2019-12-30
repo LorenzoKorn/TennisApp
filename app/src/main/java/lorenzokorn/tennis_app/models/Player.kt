@@ -21,7 +21,7 @@ data class Player(
      * @return initials of the player
      */
     fun getInitials(): String {
-        return "${firstName[0]} ${lastName[0]}"
+        return "${firstName[0]}${lastName[0]}"
     }
 
     /**
