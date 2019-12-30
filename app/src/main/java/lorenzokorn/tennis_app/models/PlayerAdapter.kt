@@ -16,12 +16,7 @@ class PlayerAdapter(var players: List<Player>, private val onClick: (Player) -> 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(player: Player) {
             itemView.setOnClickListener { onClick(player) }
-            itemView.player_initials.text = context.getString(
-                R.string.full_name,
-                player.firstName,
-                player.prefix,
-                player.lastName
-            )
+            itemView.player_name.text = player.getFullName()
             itemView.player_single_rating.text = player.ratingSingles.toInt().toString()
             itemView.player_double_rating.text = player.ratingDoubles.toInt().toString()
             itemView.player_id.text = player.id.toString()

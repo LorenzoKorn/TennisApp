@@ -44,15 +44,12 @@ class Players : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.i("hallo", "hallo1")
         initView()
         initRecyclerView()
         initFab()
     }
 
     private fun initView() {
-        Log.i("hallo", "hallo2")
-
         viewModel.players.observe(this, Observer { players ->
             this@Players.players.clear()
             this@Players.players.addAll(players)
@@ -74,6 +71,8 @@ class Players : Fragment() {
     }
 
     private fun openPlayerHome(player: Player) {
-        findNavController().navigate(R.id.users_to_userHome)
+        val args = Bundle()
+        args.putParcelable("player", player)
+        findNavController().navigate(R.id.users_to_userHome, args)
     }
 }

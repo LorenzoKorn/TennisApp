@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.R
 import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
