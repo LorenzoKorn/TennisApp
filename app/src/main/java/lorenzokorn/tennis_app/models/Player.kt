@@ -15,4 +15,19 @@ data class Player(
     @ColumnInfo(name = "rating_singles") var ratingSingles: Double,
     @ColumnInfo(name = "rating_doubles") var ratingDoubles: Double,
     @PrimaryKey @ColumnInfo(name = "id") var id: Long
-) : Parcelable
+) : Parcelable {
+
+    /**
+     * @return initials of the player
+     */
+    fun getInitials(): String {
+        return "${firstName[0]} ${lastName[0]}"
+    }
+
+    /**
+     * @return full name of the player
+     */
+    fun getFullName(): String {
+        return "${"$firstName "}${if (prefix.isNotBlank()) "$prefix " else ""}$lastName"
+    }
+}

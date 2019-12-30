@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.R
+import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
+import lorenzokorn.tennis_app.models.Player
 
 /**
  * A simple [Fragment] subclass.
@@ -24,5 +27,15 @@ class UserHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initView()
+    }
+
+    private fun initView() {
+        val player: Player? = arguments?.getParcelable("player")
+        player_initials.text = player!!.getInitials()
+        player_name.text = player.getFullName()
+        player_single_rating.text = getString(R.string.single_rating, player.ratingSingles)
+        player_double_rating.text = getString(R.string.double_rating, player.ratingDoubles)
     }
 }
