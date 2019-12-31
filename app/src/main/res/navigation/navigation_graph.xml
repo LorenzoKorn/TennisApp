@@ -39,5 +39,13 @@
         <argument
             android:name="player"
             app:argType="lorenzokorn.tennis_app.models.Player" />
+        <action
+            android:id="@+id/userHome_to_createMatch"
+            app:destination="@id/createMatch" />
     </fragment>
+    <fragment
+        android:id="@+id/createMatch"
+        android:name="lorenzokorn.tennis_app.fragments.CreateMatch"
+        android:label="create match"
+        tools:layout="@layout/fragment_create_match" />
 </navigation>

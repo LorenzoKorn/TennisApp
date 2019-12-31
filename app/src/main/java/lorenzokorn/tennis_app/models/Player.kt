@@ -30,4 +30,8 @@ data class Player(
     fun getFullName(): String {
         return "${"$firstName "}${if (prefix.isNotBlank()) "$prefix " else ""}$lastName"
     }
+
+    override fun toString(): String {
+        return getFullName()
+    }
 }

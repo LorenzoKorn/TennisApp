@@ -21,4 +21,7 @@
     <!-- PLAYER HOME -->
     <string name="single_rating">Singles: %.3f</string>
     <string name="double_rating">Doubles: %.3f</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

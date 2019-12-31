@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
@@ -28,6 +29,7 @@ class UserHome : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        initFab()
     }
 
     private fun initView() {
@@ -36,5 +38,11 @@ class UserHome : Fragment() {
         player_name.text = player.getFullName()
         player_single_rating.text = getString(R.string.single_rating, player.ratingSingles)
         player_double_rating.text = getString(R.string.double_rating, player.ratingDoubles)
+    }
+
+    private fun initFab() {
+        player_add_match.setOnClickListener {
+            findNavController().navigate(R.id.userHome_to_createMatch)
+        }
     }
 }
