@@ -42,7 +42,7 @@ class CreateMatch : Fragment() {
         initDropdown()
 
         btn.setOnClickListener {
-            Snackbar.make(btn, "${spinner.selectedItem}", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(btn, "${player_home_1.selectedItem}", Snackbar.LENGTH_SHORT).show()
         }
     }
 
