@@ -1,7 +1,6 @@
 package lorenzokorn.tennis_app.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +16,11 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
 
     val error = MutableLiveData<String?>()
     val success = MutableLiveData<Boolean>()
-    val players = playerRepository.getPlayers()
+    val players = MutableLiveData<List<Player>>()
+
+    fun getPlayers() {
+        players.value = playerRepository.getPlayers()
+    }
 
     fun addPlayer(player: Player) {
         mainScope.launch {
@@ -30,7 +33,7 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
      * validates all the input field that makes up the user.
      * @return boolean if all field are valid
      */
-    private fun isPlayerValid(player:Player): Boolean {
+    private fun isPlayerValid(player: Player): Boolean {
         return when {
             // first name contains numbers or special characters
             isNameValid(player.firstName) -> {

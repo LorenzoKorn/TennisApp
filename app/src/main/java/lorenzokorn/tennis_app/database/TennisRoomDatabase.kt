@@ -25,6 +25,7 @@ abstract class TennisRoomDatabase : RoomDatabase() {
                             TennisRoomDatabase::class.java, DATABASE_NAME
                         )
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
                             .build()
                     }
                 }

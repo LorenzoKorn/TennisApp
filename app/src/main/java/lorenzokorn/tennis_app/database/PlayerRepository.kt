@@ -12,7 +12,7 @@ class PlayerRepository(context: Context) {
         playerDao = db!!.playerDao()
     }
 
-    fun getPlayers(): LiveData<List<Player>> = playerDao.getPlayers()
+    fun getPlayers(): List<Player> = playerDao.getPlayers()
 
     fun insertPlayer(player: Player) = playerDao.insertPlayer(player)
 }

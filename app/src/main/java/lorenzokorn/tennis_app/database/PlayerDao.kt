@@ -10,7 +10,7 @@ import lorenzokorn.tennis_app.models.Player
 interface PlayerDao {
 
     @Query("SELECT * FROM player")
-    fun getPlayers(): LiveData<List<Player>>
+    fun getPlayers(): List<Player>
 
     @Insert
     fun insertPlayer(player: Player)

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.player_list_item.view.*
 import lorenzokorn.tennis_app.R
 
-class PlayerAdapter(var players: List<Player>, private val onClick: (Player) -> Unit) :
+class PlayerAdapter(private var players: List<Player>, private val onClick: (Player) -> Unit) :
     RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     private lateinit var context: Context

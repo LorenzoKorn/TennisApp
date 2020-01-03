@@ -2,7 +2,6 @@ package lorenzokorn.tennis_app.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,11 +49,12 @@ class Players : Fragment() {
     }
 
     private fun initView() {
-        viewModel.players.observe(this, Observer { players ->
+        viewModel.players.observe(this, Observer {
             this@Players.players.clear()
-            this@Players.players.addAll(players)
+            this@Players.players.addAll(it)
             playerAdapter.notifyDataSetChanged()
         })
+        viewModel.getPlayers()
     }
 
     private fun initRecyclerView() {

@@ -24,6 +24,7 @@ import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
  */
 class CreateMatch : Fragment() {
     lateinit var viewModel: PlayerViewModel
+    private val players = arrayListOf<Player>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,10 @@ class CreateMatch : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.players.observe(this, Observer {
+            players.addAll(it)
+        })
+        viewModel.getPlayers()
         initDropdown()
 
         btn.setOnClickListener {
@@ -47,23 +52,17 @@ class CreateMatch : Fragment() {
     }
 
     private fun initDropdown() {
-        val playerList = arrayListOf<Player>()
+        Log.e("players list size", "${players.size}")
 
-        viewModel.players.observe(this, Observer { players ->
-                playerList.addAll(players)
-        })
-
-        Log.e("players list size", "${playerList.size}")
-
-        val adapter = ArrayAdapter(
+        val adapter = ArrayAdapter<Player>(
             context!!,
             android.R.layout.simple_spinner_item,
-            playerList
+            players
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         player_home_1.adapter = adapter
 
-        player_home_1.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        player_home_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.e("nothing", "selected!")
             }
@@ -73,7 +72,6 @@ class CreateMatch : Fragment() {
                 // val item = parent.getItemAtPosition(position) as String
 //                val a = parent.selectedItem as Player
 //                Log.e("item---", a.toString())
-                // todo: on change
 
 //                val item = adapter.getItem(position) as Player
                 Log.e("item", "item!!.toString()")
