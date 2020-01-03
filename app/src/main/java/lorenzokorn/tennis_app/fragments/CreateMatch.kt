@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_create_match.*
 
 import lorenzokorn.tennis_app.R
@@ -30,6 +31,7 @@ class CreateMatch : Fragment() {
     ): View? {
         viewModel =
             ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_match, container, false)
     }
@@ -38,15 +40,17 @@ class CreateMatch : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initDropdown()
+
+        btn.setOnClickListener {
+            Snackbar.make(btn, "${spinner.selectedItem}", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun initDropdown() {
         val playerList = arrayListOf<Player>()
 
         viewModel.players.observe(this, Observer { players ->
-            for (player in players) {
-                playerList.add(player)
-            }
+                playerList.addAll(players)
         })
 
         Log.e("players list size", "${playerList.size}")
@@ -67,14 +71,14 @@ class CreateMatch : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 // either one will work as well
                 // val item = parent.getItemAtPosition(position) as String
-                val a = parent.selectedItem as Player
-                Log.e("item---", a.toString())
+//                val a = parent.selectedItem as Player
+//                Log.e("item---", a.toString())
                 // todo: on change
 
-                val item = adapter.getItem(position) as Player
+//                val item = adapter.getItem(position) as Player
                 Log.e("item", "item!!.toString()")
-                Log.e("item", item.toString())
-                Log.e("item1", item.getFullName())
+//                Log.e("item", item.toString())
+//                Log.e("item1", item.getFullName())
             }
         }
     }
