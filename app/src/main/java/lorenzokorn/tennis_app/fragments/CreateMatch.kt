@@ -14,14 +14,17 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_create_match.*
 
 import lorenzokorn.tennis_app.R
+import lorenzokorn.tennis_app.models.Match
 import lorenzokorn.tennis_app.models.Player
+import lorenzokorn.tennis_app.viewmodels.MatchViewModel
 import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class CreateMatch : Fragment() {
-    lateinit var viewModel: PlayerViewModel
+    lateinit var playerViewModel: PlayerViewModel
+    lateinit var matchViewModel: MatchViewModel
     private val players = arrayListOf(Player("Select","","player",0.0,0.0,-11))
     lateinit var playerHome1: Player
     lateinit var playerHome2: Player
@@ -32,8 +35,8 @@ class CreateMatch : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
+        playerViewModel = ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
+        matchViewModel = ViewModelProviders.of(activity as AppCompatActivity).get(MatchViewModel::class.java)
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_match, container, false)
@@ -43,18 +46,19 @@ class CreateMatch : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initPlayers()
+        initMatchFab()
     }
 
     /**
      * fetch players from room
      */
     private fun initPlayers() {
-        viewModel.players.observe(this, Observer {
+        playerViewModel.players.observe(this, Observer {
             players.addAll(it)
             initHomePlayers()
             initChallengers()
         })
-        viewModel.getPlayers()
+        playerViewModel.getPlayers()
     }
 
     /**
@@ -118,6 +122,27 @@ class CreateMatch : Fragment() {
             2 -> playerHome2 = player
             3 -> challenger1 = player
             4 -> challenger2 = player
+        }
+    }
+
+    private fun initMatchFab() {
+        new_match_fab.setOnClickListener {
+            matchViewModel.insertMatch(Match(
+                123,
+                1.0000,
+                234,
+                1.0000,
+                345,
+                1.0000,
+                456,
+                1.0000,
+                6,
+                4,
+                6,
+                1,
+                6,
+                4
+            ))
         }
     }
 }

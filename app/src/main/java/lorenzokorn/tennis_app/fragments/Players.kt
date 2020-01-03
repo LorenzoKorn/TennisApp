@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_users.*
 import lorenzokorn.tennis_app.R
 import lorenzokorn.tennis_app.models.Player
 import lorenzokorn.tennis_app.models.PlayerAdapter
+import lorenzokorn.tennis_app.viewmodels.MatchViewModel
 import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
 
 /**
@@ -25,7 +26,8 @@ import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
  */
 class Players : Fragment() {
 
-    private lateinit var viewModel: PlayerViewModel
+    private lateinit var playerViewModel: PlayerViewModel
+    private lateinit var matchViewModel: MatchViewModel
     private var players = arrayListOf<Player>()
     private var playerAdapter = PlayerAdapter(players) { player -> openPlayerHome(player) }
 
@@ -35,7 +37,8 @@ class Players : Fragment() {
     ): View? {
         // shows the actionbar
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        viewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
+        playerViewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
+        matchViewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_users, container, false)
     }
@@ -49,12 +52,12 @@ class Players : Fragment() {
     }
 
     private fun initView() {
-        viewModel.players.observe(this, Observer {
+        playerViewModel.players.observe(this, Observer {
             this@Players.players.clear()
             this@Players.players.addAll(it)
             playerAdapter.notifyDataSetChanged()
         })
-        viewModel.getPlayers()
+        playerViewModel.getPlayers()
     }
 
     private fun initRecyclerView() {

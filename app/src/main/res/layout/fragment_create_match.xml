@@ -131,4 +131,17 @@
             android:inputType="number"
             tools:ignore="LabelFor" />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/new_match_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:focusable="true"
+        android:src="@android:drawable/ic_menu_save"
+        android:tint="#fff"
+        app:backgroundTint="@color/primaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

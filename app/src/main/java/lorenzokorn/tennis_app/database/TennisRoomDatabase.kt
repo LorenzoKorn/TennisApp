@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import lorenzokorn.tennis_app.models.Match
 import lorenzokorn.tennis_app.models.Player
 
-@Database(entities = [Player::class], version = 3, exportSchema = false)
+@Database(entities = [Player::class, Match::class], version = 1, exportSchema = false)
 abstract class TennisRoomDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
+    abstract fun matchDao(): MatchDao
 
     companion object {
         private const val DATABASE_NAME = "Tennis_database"

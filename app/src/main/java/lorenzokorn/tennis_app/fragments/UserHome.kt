@@ -6,21 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
 import lorenzokorn.tennis_app.models.Player
+import lorenzokorn.tennis_app.viewmodels.MatchViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class UserHome : Fragment() {
 
+    private lateinit var matchViewModel: MatchViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        matchViewModel = ViewModelProviders.of(activity as AppCompatActivity).get(MatchViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_home, container, false)
     }
