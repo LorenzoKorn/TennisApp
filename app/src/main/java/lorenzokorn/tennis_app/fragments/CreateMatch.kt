@@ -2,7 +2,6 @@ package lorenzokorn.tennis_app.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_create_match.*
 
 import lorenzokorn.tennis_app.R
@@ -24,7 +22,11 @@ import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
  */
 class CreateMatch : Fragment() {
     lateinit var viewModel: PlayerViewModel
-    private val players = arrayListOf<Player>()
+    private val players = arrayListOf(Player("Select","","player",0.0,0.0,-11))
+    lateinit var playerHome1: Player
+    lateinit var playerHome2: Player
+    lateinit var challenger1: Player
+    lateinit var challenger2: Player
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,44 +42,82 @@ class CreateMatch : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initPlayers()
+    }
+
+    /**
+     * fetch players from room
+     */
+    private fun initPlayers() {
         viewModel.players.observe(this, Observer {
             players.addAll(it)
+            initHomePlayers()
+            initChallengers()
         })
         viewModel.getPlayers()
-        initDropdown()
+    }
 
-        btn.setOnClickListener {
-            Snackbar.make(btn, "${player_home_1.selectedItem}", Snackbar.LENGTH_SHORT).show()
+    /**
+     * initializes the drop downs for the home players
+     */
+    private fun initHomePlayers() {
+        val adapter = ArrayAdapter<Player>(context!!, android.R.layout.simple_spinner_item, players)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        player_home_1.adapter = adapter
+        player_home_2.adapter = adapter
+
+        player_home_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                setPlayer(1, parent.selectedItem as Player)
+            }
+        }
+
+        player_home_2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                setPlayer(2, parent.selectedItem as Player)
+            }
         }
     }
 
-    private fun initDropdown() {
-        Log.e("players list size", "${players.size}")
-
-        val adapter = ArrayAdapter<Player>(
-            context!!,
-            android.R.layout.simple_spinner_item,
-            players
-        )
+    /**
+     * initializes the drop downs for the challengers
+     */
+    private fun initChallengers() {
+        val adapter = ArrayAdapter<Player>(context!!, android.R.layout.simple_spinner_item, players)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        player_home_1.adapter = adapter
+        challenger_1.adapter = adapter
+        challenger_2.adapter = adapter
 
-        player_home_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.e("nothing", "selected!")
-            }
+        challenger_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // either one will work as well
-                // val item = parent.getItemAtPosition(position) as String
-//                val a = parent.selectedItem as Player
-//                Log.e("item---", a.toString())
-
-//                val item = adapter.getItem(position) as Player
-                Log.e("item", "item!!.toString()")
-//                Log.e("item", item.toString())
-//                Log.e("item1", item.getFullName())
+                setPlayer(3, parent.selectedItem as Player)
             }
+        }
+
+        challenger_2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                setPlayer(4, parent.selectedItem as Player)
+            }
+        }
+    }
+
+    /**
+     * Set chosen players in the right variable
+     */
+    private fun setPlayer(i: Int, player: Player) {
+        when (i) {
+            1 -> playerHome1 = player
+            2 -> playerHome2 = player
+            3 -> challenger1 = player
+            4 -> challenger2 = player
         }
     }
 }

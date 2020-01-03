@@ -32,6 +32,6 @@ data class Player(
     }
 
     override fun toString(): String {
-        return getFullName()
+        return "${getFullName()} ${if (id == (-11).toLong()) "" else "(${id})"}"
     }
 }
