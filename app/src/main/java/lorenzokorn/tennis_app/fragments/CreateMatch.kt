@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_create_match.*
 
 import lorenzokorn.tennis_app.R
@@ -25,7 +26,7 @@ import lorenzokorn.tennis_app.viewmodels.PlayerViewModel
 class CreateMatch : Fragment() {
     lateinit var playerViewModel: PlayerViewModel
     lateinit var matchViewModel: MatchViewModel
-    private val players = arrayListOf(Player("Select","","player",0.0,0.0,-11))
+    private val players = arrayListOf(Player("Select", "", "player", 0.0, 0.0, -11))
     lateinit var playerHome1: Player
     lateinit var playerHome2: Player
     lateinit var challenger1: Player
@@ -35,8 +36,10 @@ class CreateMatch : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        playerViewModel = ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
-        matchViewModel = ViewModelProviders.of(activity as AppCompatActivity).get(MatchViewModel::class.java)
+        playerViewModel =
+            ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
+        matchViewModel =
+            ViewModelProviders.of(activity as AppCompatActivity).get(MatchViewModel::class.java)
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_match, container, false)
@@ -73,7 +76,12 @@ class CreateMatch : Fragment() {
         player_home_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 setPlayer(1, parent.selectedItem as Player)
             }
         }
@@ -81,7 +89,12 @@ class CreateMatch : Fragment() {
         player_home_2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 setPlayer(2, parent.selectedItem as Player)
             }
         }
@@ -99,7 +112,12 @@ class CreateMatch : Fragment() {
         challenger_1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 setPlayer(3, parent.selectedItem as Player)
             }
         }
@@ -107,7 +125,12 @@ class CreateMatch : Fragment() {
         challenger_2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 setPlayer(4, parent.selectedItem as Player)
             }
         }
@@ -127,22 +150,25 @@ class CreateMatch : Fragment() {
 
     private fun initMatchFab() {
         new_match_fab.setOnClickListener {
-            matchViewModel.insertMatch(Match(
-                123,
-                1.0000,
-                234,
-                1.0000,
-                345,
-                1.0000,
-                456,
-                1.0000,
-                6,
-                4,
-                6,
-                1,
-                6,
-                4
-            ))
+            matchViewModel.insertMatch(
+                Match(
+                    playerHome1.id,
+                    playerHome1.ratingDoubles,
+                    playerHome2.id,
+                    playerHome2.ratingDoubles,
+                    challenger1.id,
+                    challenger1.ratingDoubles,
+                    challenger2.id,
+                    challenger2.ratingDoubles,
+                    set_home_1.text.toString().toInt(10),
+                    set_home_2.text.toString().toInt(10),
+                    set_home_3.text.toString().toInt(10),
+                    set_out_1.text.toString().toInt(10),
+                    set_out_2.text.toString().toInt(10),
+                    set_out_3.text.toString().toInt(10)
+                )
+            )
+            findNavController().navigateUp()
         }
     }
 }

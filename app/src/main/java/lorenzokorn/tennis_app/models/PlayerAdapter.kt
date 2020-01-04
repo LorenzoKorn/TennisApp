@@ -28,7 +28,6 @@ class PlayerAdapter(private var players: List<Player>, private val onClick: (Pla
         return ViewHolder(
             LayoutInflater.from(context).inflate(R.layout.player_list_item, parent, false)
         )
-
     }
 
     override fun getItemCount(): Int {

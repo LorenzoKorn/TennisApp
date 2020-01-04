@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import lorenzokorn.tennis_app.models.Match
 import lorenzokorn.tennis_app.models.Player
 
-@Database(entities = [Player::class, Match::class], version = 1, exportSchema = false)
+@Database(entities = [Player::class, Match::class], version = 2, exportSchema = false)
 abstract class TennisRoomDatabase : RoomDatabase() {
     abstract fun playerDao(): PlayerDao
     abstract fun matchDao(): MatchDao

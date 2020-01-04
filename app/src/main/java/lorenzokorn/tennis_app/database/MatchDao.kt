@@ -8,7 +8,7 @@ import lorenzokorn.tennis_app.models.Match
 @Dao
 interface MatchDao {
 
-    @Query("SELECT * FROM `match` WHERE player_home_1 = :player_id")
+    @Query("SELECT * FROM `match` WHERE player_home_1 = :player_id OR player_home_2 = :player_id OR challenger_1 = :player_id OR challenger_2 = :player_id")
     fun getMatches(player_id: Long): List<Match>
 
     @Insert
