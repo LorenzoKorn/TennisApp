@@ -150,24 +150,25 @@ class CreateMatch : Fragment() {
 
     private fun initMatchFab() {
         new_match_fab.setOnClickListener {
-            matchViewModel.insertMatch(
-                Match(
-                    playerHome1.id,
-                    playerHome1.ratingDoubles,
-                    playerHome2.id,
-                    playerHome2.ratingDoubles,
-                    challenger1.id,
-                    challenger1.ratingDoubles,
-                    challenger2.id,
-                    challenger2.ratingDoubles,
-                    set_home_1.text.toString().toInt(10),
-                    set_home_2.text.toString().toInt(10),
-                    set_home_3.text.toString().toInt(10),
-                    set_out_1.text.toString().toInt(10),
-                    set_out_2.text.toString().toInt(10),
-                    set_out_3.text.toString().toInt(10)
-                )
+            val match = Match(
+                playerHome1.id,
+                playerHome1.ratingDoubles,
+                playerHome2.id,
+                playerHome2.ratingDoubles,
+                challenger1.id,
+                challenger1.ratingDoubles,
+                challenger2.id,
+                challenger2.ratingDoubles,
+                set_home_1.text.toString().toInt(10),
+                set_home_2.text.toString().toInt(10),
+                set_home_3.text.toString().toInt(10),
+                set_out_1.text.toString().toInt(10),
+                set_out_2.text.toString().toInt(10),
+                set_out_3.text.toString().toInt(10)
             )
+
+            matchViewModel.insertMatch(match)
+            playerViewModel.updatePlayersRating(match)
             findNavController().navigateUp()
         }
     }

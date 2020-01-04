@@ -92,7 +92,8 @@ class UserHome : Fragment() {
                 val match = matches[position]
                 matchViewModel.deleteMatch(match)
                 Snackbar.make(player_matches, "Successfully deleted!", Snackbar.LENGTH_SHORT).show()
-                matchAdapter.notifyDataSetChanged()
+                val player: Player? = arguments?.getParcelable("player")
+                matchViewModel.getMatches(player!!.id)
             }
         }
         return ItemTouchHelper(callback)

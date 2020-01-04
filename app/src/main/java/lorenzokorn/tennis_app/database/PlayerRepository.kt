@@ -14,5 +14,9 @@ class PlayerRepository(context: Context) {
 
     fun getPlayers(): List<Player> = playerDao.getPlayers()
 
+    fun getPlayer(id:Long):Player = playerDao.getPlayer(id)
+
     fun insertPlayer(player: Player) = playerDao.insertPlayer(player)
+
+    fun updateRating(player: Player) = playerDao.updateRating(player)
 }
