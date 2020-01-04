@@ -26,4 +26,8 @@ class MatchViewModel(application: Application): AndroidViewModel(application) {
         Log.w("match", "$match")
         matchRepository.insertPlayer(match)
     }
+
+    fun deleteMatch(match: Match) {
+        matchRepository.deleteMatch(match)
+    }
 }

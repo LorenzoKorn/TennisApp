@@ -11,8 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
@@ -70,11 +72,29 @@ class UserHome : Fragment() {
             LinearLayoutManager(this@UserHome.context, RecyclerView.VERTICAL, false)
         player_matches.adapter = matchAdapter
         player_matches.addItemDecoration(DividerItemDecoration(this@UserHome.context, 0))
+        createItemTouchHelper().attachToRecyclerView(player_matches)
     }
 
     private fun initFab() {
         player_add_match.setOnClickListener {
             findNavController().navigate(R.id.userHome_to_createMatch)
         }
+    }
+
+    private fun createItemTouchHelper(): ItemTouchHelper {
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val match = matches[position]
+                matchViewModel.deleteMatch(match)
+                Snackbar.make(player_matches, "Successfully deleted!", Snackbar.LENGTH_SHORT).show()
+                matchAdapter.notifyDataSetChanged()
+            }
+        }
+        return ItemTouchHelper(callback)
     }
 }

@@ -1,6 +1,7 @@
 package lorenzokorn.tennis_app.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import lorenzokorn.tennis_app.models.Match
@@ -13,4 +14,7 @@ interface MatchDao {
 
     @Insert
     fun insertMatch(match: Match)
+
+    @Delete
+    fun deleteMatch(match: Match)
 }

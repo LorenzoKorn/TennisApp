@@ -14,4 +14,6 @@ class MatchRepository(context: Context) {
     fun getMatches(id: Long): List<Match> = matchDao.getMatches(id)
 
     fun insertPlayer(match: Match) = matchDao.insertMatch(match)
+
+    fun deleteMatch(match: Match) = matchDao.deleteMatch(match)
 }
