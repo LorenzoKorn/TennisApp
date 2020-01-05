@@ -49,6 +49,7 @@ class Players : Fragment() {
         initView()
         initRecyclerView()
         initFab()
+        initWeatherButton()
     }
 
     private fun initView() {
@@ -70,6 +71,12 @@ class Players : Fragment() {
     private fun initFab() {
         players_fab.setOnClickListener {
             findNavController().navigate(R.id.users_to_createUser)
+        }
+    }
+
+    private fun initWeatherButton() {
+        weather_btn.setOnClickListener {
+            findNavController().navigate(R.id.open_weather)
         }
     }
 

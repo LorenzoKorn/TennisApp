@@ -70,7 +70,7 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
         when {
             // home wins
             t == w -> {
-                if (opponent2 == null) {
+                if (opponent2.id == (-11).toLong()) {
                     player.ratingSingles =
                         (player.ratingSingles + opponent1.ratingSingles - 1.0) / 2.0
                 } else {
@@ -80,7 +80,7 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
             }
             // out wins
             t != w -> {
-                if (opponent2 == null) {
+                if (opponent2.id == (-11).toLong()) {
                     player.ratingSingles =
                         (player.ratingSingles + opponent1.ratingSingles + 1.0) / 2.0
                 } else {

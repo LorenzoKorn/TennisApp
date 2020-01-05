@@ -14,6 +14,7 @@
             android:id="@+id/splashScreen_to_users"
             app:destination="@id/users" />
     </fragment>
+
     <fragment
         android:id="@+id/users"
         android:name="lorenzokorn.tennis_app.fragments.Players"
@@ -25,12 +26,17 @@
         <action
             android:id="@+id/users_to_userHome"
             app:destination="@id/userHome" />
+        <action
+            android:id="@+id/open_weather"
+            app:destination="@id/weather" />
     </fragment>
+
     <fragment
         android:id="@+id/create_player"
         android:name="lorenzokorn.tennis_app.fragments.CreatePlayer"
         android:label="create player"
         tools:layout="@layout/fragment_create_player" />
+
     <fragment
         android:id="@+id/userHome"
         android:name="lorenzokorn.tennis_app.fragments.UserHome"
@@ -43,9 +49,16 @@
             android:id="@+id/userHome_to_createMatch"
             app:destination="@id/createMatch" />
     </fragment>
+
     <fragment
         android:id="@+id/createMatch"
         android:name="lorenzokorn.tennis_app.fragments.CreateMatch"
         android:label="create match"
         tools:layout="@layout/fragment_create_match" />
+
+    <fragment
+        android:id="@+id/weather"
+        android:name="lorenzokorn.tennis_app.fragments.Weather"
+        android:label="weather"
+        tools:layout="@layout/fragment_weather" />
 </navigation>
