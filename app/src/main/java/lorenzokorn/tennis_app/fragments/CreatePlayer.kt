@@ -60,11 +60,11 @@ class CreatePlayer : Fragment() {
             ViewModelProviders.of(activity as AppCompatActivity).get(PlayerViewModel::class.java)
 
         viewModel.error.observe(this, Observer {
-            Log.i("INFOOOOOO", "ERROR OCCURRED")
+            Log.i("INFO", "ERROR OCCURRED")
         })
 
         viewModel.success.observe(this, Observer {
-            Log.i("INFOOOOOO", "SUCCESSFUL")
+            Log.i("INFO", "SUCCESSFUL")
         })
     }
 }

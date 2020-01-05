@@ -65,8 +65,6 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
         val opponent1 = getPlayer(o1)
         val opponent2: Player? = getPlayer(o2)
 
-        Log.w("info", "$player $opponent1 $opponent2")
-
         when {
             // home wins
             t == w -> {

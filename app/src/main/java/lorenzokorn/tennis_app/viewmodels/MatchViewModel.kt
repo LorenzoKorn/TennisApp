@@ -18,7 +18,6 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun insertMatch(match: Match) {
-        Log.w("match", "$match")
         matchRepository.insertPlayer(match)
     }
 
