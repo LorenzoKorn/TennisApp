@@ -22,10 +22,10 @@
     <!-- PLAYER HOME -->
     <string name="single_rating">Singles: %.3f</string>
     <string name="double_rating">Doubles: %.3f</string>
-    <string name="home_1">%s %.3f</string>
-    <string name="home_2">%s %.3f</string>
-    <string name="out_1">%s %.3f</string>
-    <string name="out_2">%s %.3f</string>
+    <string name="home_1">%s (%.3f)</string>
+    <string name="home_2">%s (%.3f)</string>
+    <string name="out_1">%s (%.3f)</string>
+    <string name="out_2">%s (%.3f)</string>
 
     <!-- WEATHER -->
     <string name="location_id">Location id: %4d</string>
