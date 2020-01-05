@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.match_list_item.view.*
 import lorenzokorn.tennis_app.R
 
-class MatchAdapter(private var matches: List<Match>):  RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
+class MatchAdapter(private var matches: List<Match>): RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
 
     private lateinit var context: Context
 
@@ -16,8 +16,8 @@ class MatchAdapter(private var matches: List<Match>):  RecyclerView.Adapter<Matc
         fun bind(match: Match) {
             itemView.player_home_1.text = "${match.playerHome1} (${match.playerHome1Rating})"
             itemView.player_home_2.text = "${match.playerHome2} (${match.playerHome2Rating})"
-            itemView.challenger_1.text =  "${match.challenger1} (${match.challenger1Rating})"
-            itemView.challenger_2.text =  "${match.challenger2} (${match.challenger2Rating})"
+            itemView.challenger_1.text = "${match.challenger1} (${match.challenger1Rating})"
+            itemView.challenger_2.text = "${match.challenger2} (${match.challenger2Rating})"
             itemView.set_home_1.text = "${match.setHome1}"
             itemView.set_home_2.text = "${match.setHome2}"
             itemView.set_home_3.text = "${match.setHome3}"

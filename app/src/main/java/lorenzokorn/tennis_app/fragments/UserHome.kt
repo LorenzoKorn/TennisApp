@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_create_match.*
 import kotlinx.android.synthetic.main.fragment_user_home.*
 
 import lorenzokorn.tennis_app.R
