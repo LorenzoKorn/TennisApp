@@ -1,7 +1,6 @@
 package lorenzokorn.tennis_app.database
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import lorenzokorn.tennis_app.models.Player
 
 class PlayerRepository(context: Context) {
@@ -14,7 +13,7 @@ class PlayerRepository(context: Context) {
 
     fun getPlayers(): List<Player> = playerDao.getPlayers()
 
-    fun getPlayer(id:Long):Player = playerDao.getPlayer(id)
+    fun getPlayer(id: Long): Player = playerDao.getPlayer(id)
 
     fun insertPlayer(player: Player) = playerDao.insertPlayer(player)
 

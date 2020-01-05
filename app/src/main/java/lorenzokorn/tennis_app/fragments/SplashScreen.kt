@@ -35,7 +35,9 @@ class SplashScreen : Fragment() {
 
         val animator = ValueAnimator.ofInt(0, progressBar.max)
         animator.duration = 2000
-        animator.addUpdateListener { animation -> progressBar.progress = animation.animatedValue as Int }
+        animator.addUpdateListener { animation ->
+            progressBar.progress = animation.animatedValue as Int
+        }
         animator.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)

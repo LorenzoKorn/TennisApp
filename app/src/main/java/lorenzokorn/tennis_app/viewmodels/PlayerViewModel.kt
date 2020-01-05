@@ -63,7 +63,7 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
     private fun updatePlayerRating(p: Long, o1: Long, o2: Long, t: String, w: String) {
         val player = getPlayer(p)
         val opponent1 = getPlayer(o1)
-        val opponent2 = getPlayer(o2)
+        val opponent2: Player? = getPlayer(o2)
 
         Log.w("info", "$player $opponent1 $opponent2")
 
