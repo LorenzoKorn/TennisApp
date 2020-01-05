@@ -60,17 +60,17 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
      * @param t team
      * @param w winning team
      */
-    private fun updatePlayerRating(p: Long, o1: Long, o2: Long?, t: String, w: String) {
+    private fun updatePlayerRating(p: Long, o1: Long, o2: Long, t: String, w: String) {
         val player = getPlayer(p)
         val opponent1 = getPlayer(o1)
-        val opponent2 = getPlayer(o2!!)
+        val opponent2 = getPlayer(o2)
 
         Log.w("info", "$player $opponent1 $opponent2")
 
         when {
             // home wins
             t == w -> {
-                if (opponent2.id == (-11).toLong()) {
+                if (opponent2 == null) {
                     player.ratingSingles =
                         (player.ratingSingles + opponent1.ratingSingles - 1.0) / 2.0
                 } else {
@@ -80,7 +80,7 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
             }
             // out wins
             t != w -> {
-                if (opponent2.id == (-11).toLong()) {
+                if (opponent2 == null) {
                     player.ratingSingles =
                         (player.ratingSingles + opponent1.ratingSingles + 1.0) / 2.0
                 } else {
